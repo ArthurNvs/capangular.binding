@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'angular-first';
-  constructor() { }
+
   public itens: Array<item> = new Array<item>();
   public listProdutos: Array<item> = new Array<item>();
 
   pedido:pedido = {numero:1, valor:0, entrega: false, itens: new Array<item>() };  
   pedidoConcluido = false;  
   model:cliente = {nome: " ", endereco: "", entrega: false};   
+
+  constructor(private elementRef: ElementRef) {
+    
+  }
+
+  ngAfterViewInit(){
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'rgb(215,222,255)';
+ }
 
 
   somaProdutos(itens: Array<item>): number {

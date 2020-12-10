@@ -5,17 +5,20 @@
             <td>Descrição</td>
             <td>Categoria</td>
             <td>Valor</td>
-            <td>Quantidade</td>
+            <td>Comprar</td>
         </tr>
-    
+
         <tr class="cart-item" *ngFor="let item of itens">
             <td>{{ item.descricao }}</td>
             <td>{{ item.categoria }}</td>
             <td>{{ item.preco }}</td>
             <td>
-                <input type="number" [(ngModel)]="item.quantidade" name="quantidade" value="0" min="0">
+                <label>
+                    <input type="checkbox" name="entregar" #entregar="ngModel" ngModel>
+                    <span></span>
+                </label>
             </td>
         </tr>
-                
-    </table>    
+
+    </table>
 </div>

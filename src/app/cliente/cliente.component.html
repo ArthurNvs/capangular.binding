@@ -1,22 +1,30 @@
 <div class="form-group">
-    <h2>Cliente</h2>
-    <table border="1">
-        <label for="nome">Nome: </label>
-        <input type="text" [(ngModel)]="cliente.nome" name="nome">
+    <h4>Informações do Cliente</h4>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+        <label>Nome: </label>
+        <input name="nome" #nome="ngModel" ngModel required><br>
 
-        <label for="matricula">Endereço: </label>
-        <input type="text" [(ngModel)]="cliente.endereco" name="endereco">
+        <label>Endereço: </label>
+        <input name="endereco" #endereco="ngModel" ngModel><br>
 
-        <div class="checkbox-submit"> 
-        <label>
-            Desejo entrega neste endereço
-            <input type="checkbox" [(ngModel)]="cliente.entregar" name="entregar">
-            <span> (:</span>
-        </label>
+        <div class="checkbox-submit">
+            <label>
+                Desejo entrega neste endereço
+                <input type="checkbox" name="entregar" #entregar="ngModel" ngModel>
+                <span> (:</span>
+            </label>
         </div>
-    </table>
-</div>
+        <br><br>
 
-<h4>Informações do pedido</h4>
-<p>Nome: {{cliente.nome}}</p>
-<p>Endereço: {{cliente.endereco}}</p>
+        <p>Nome: {{ nome.value }}</p>
+        <p>Endereço: {{ endereco.value }}</p>
+        <p>Entregar: {{ entregar.value }}</p>
+
+        <br>
+
+        <button class="btn waves-effect waves-light" 
+            (click)="saveUser(nome.value, endereco.value, entregar.value)" 
+            routerLink="/carrinho" 
+            routerLinkActive="active"> Salvar </button>
+    </form>
+</div>

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ICliente } from '../model/cliente.model';
 
 @Component({
   selector: 'app-cliente',
@@ -7,25 +9,31 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ClienteComponent implements OnInit {
 
-  @Input() nome: string = '';
-  @Input() endereco: string = '';
-  @Input() entregar: boolean = false;
+  entregar: boolean = false;
 
-
-  cliente: ICliente = {};
+  cliente: ICliente = { nome: "" };
 
   constructor() { }
 
   ngOnInit(): void {
-    this.cliente.nome = "";
-    this.cliente.endereco = "";
-    this.cliente.entregar = false;
+
+  }
+  
+  onSubmit(form: NgForm) {
+    console.log(form);
   }
 
-}
+  saveUser(nome: string, endereco: string, entregar: boolean) {
+    this.cliente =  {
+      nome: nome,
+      endereco: endereco,
+      entregar: entregar
+    }
 
-export interface ICliente {
-  nome?: string,
-  endereco?: string,
-  entregar?: boolean,
+    console.log('inside saveUser()');
+    console.log(this.cliente);
+
+    return this.cliente;
+  }
+
 }
