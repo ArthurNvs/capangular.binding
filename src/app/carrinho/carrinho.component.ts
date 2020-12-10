@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { item } from '../app.component';
 
 @Component({
   selector: 'app-carrinho',
@@ -6,18 +7,26 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./carrinho.component.css']
 })
 export class CarrinhoComponent implements OnInit {
-  @Output('enviar') submitEvent = new EventEmitter<any>();
-
-  pedidoConcluido = false;  
+  pedidoConcluido = false; 
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
   
-  fnConcluir(): void{
-   this.submitEvent.emit();
-   console.log("carrinho");
+  fnConcluir(event: any): void{
+    this.somaProdutos(event);
+  
   }
 
+  somaProdutos(itens: Array<item>): number {
+    let somaProdutos = 0;
+
+    itens.forEach(item => {
+      somaProdutos += item.preco * item.quantidade;
+    });
+
+    return somaProdutos;
+  }
 }

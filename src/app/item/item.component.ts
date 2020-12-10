@@ -8,12 +8,14 @@ import { item } from '../app.component';
 })
 export class ItemComponent implements OnInit {
 
+  @Output('itens') submit = new EventEmitter<Array<item>>();
+
   public itens: Array<item> = new Array<item>();
   public listItens: Array<item> = new Array<item>();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
 
     let produtos = [
       {
@@ -127,23 +129,8 @@ export class ItemComponent implements OnInit {
       this.itens.push(produto);
     }
 
-  }
-
-  fnSend(){
-    this.somaProdutos;
-    console.log("item");
-
-  }
-
-  somaProdutos(itens: Array<item>): number {
-    let somaProdutos = 0;
-
-    itens.forEach(item => {
-      somaProdutos += item.preco * item.quantidade;
-    });
-
-    return somaProdutos;
-  }
+    this.submit.emit(this.itens);
+  } 
 
 }
 

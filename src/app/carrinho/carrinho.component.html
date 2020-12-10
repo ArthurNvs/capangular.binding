@@ -1,12 +1,6 @@
-<form> 
-
 <app-cliente></app-cliente>
-<br><br>
 
-<app-item></app-item>
-<br><br>
+<app-item (itens)="fnConcluir($event)"></app-item>
 
-<button class="btn waves-effect waves-light" type="submit" name="action" (click)="fnConcluir()"> Comprar        
+<button class="btn waves-effect waves-light" type="submit" name="action" (submit)="fnConcluir()"> Comprar        
 </button>
-
-</form>
