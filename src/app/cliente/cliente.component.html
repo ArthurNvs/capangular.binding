@@ -1,0 +1,22 @@
+<div class="form-group">
+    <h2>Cliente</h2>
+    <table border="1">
+        <label for="nome">Nome: </label>
+        <input type="text" [(ngModel)]="cliente.nome" name="nome">
+
+        <label for="matricula">Endereço: </label>
+        <input type="text" [(ngModel)]="cliente.endereco" name="endereco">
+
+        <div class="checkbox-submit"> 
+        <label>
+            Desejo entrega neste endereço
+            <input type="checkbox" [(ngModel)]="cliente.entregar" name="entregar">
+            <span> (:</span>
+        </label>
+        </div>
+    </table>
+</div>
+
+<h4>Informações do pedido</h4>
+<p>Nome: {{cliente.nome}}</p>
+<p>Endereço: {{cliente.endereco}}</p>

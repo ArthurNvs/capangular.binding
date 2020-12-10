@@ -163,7 +163,6 @@ export class AppComponent implements OnInit{
     
   }
   
-  
 }
 
 export interface item {
