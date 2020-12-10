@@ -10,8 +10,9 @@ import { ICliente } from '../model/cliente.model';
 export class ClienteComponent implements OnInit {
 
   entregar: boolean = false;
-
-  cliente: ICliente = { nome: "" };
+  error: boolean = false;
+  errorDesc: string = "";
+  cliente: ICliente = { nome: " " };
 
   constructor() { }
 
@@ -19,8 +20,8 @@ export class ClienteComponent implements OnInit {
 
   }
   
-  onSubmit(form: NgForm) {
-    console.log(form);
+  onSend(form: NgForm) {
+    console.log(form); 
   }
 
   saveUser(nome: string, endereco: string, entregar: boolean) {
@@ -30,9 +31,15 @@ export class ClienteComponent implements OnInit {
       entregar: entregar
     }
 
-    console.log('inside saveUser()');
-    console.log(this.cliente);
+    if (!this.cliente.nome) {
+      this.error = true;
+      this.errorDesc = "Preencha o nome";
+      console.error(this.errorDesc);
+    } else {
+      this.error = false;
+    }
 
+    console.log(this.cliente);
     return this.cliente;
   }
 
